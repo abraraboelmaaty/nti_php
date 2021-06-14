@@ -14,8 +14,8 @@
             <h3 class="mt-4">Form validation</h3>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <div class="form-group">
-                    <label for="inputAddress">Name</label>
-                    <input type="text" name="name" class="form-control" id="inputAddress" >
+                    <label for="inputName">Name</label>
+                    <input type="text" name="name" class="form-control" id="inputName" >
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
