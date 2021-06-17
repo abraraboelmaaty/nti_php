@@ -1,0 +1,14 @@
+1-qurey to insert data
+insert into customers(customerName,contactName,address,city,postalCode,country) values ('ibrahem','esraa','bayrut','bayrut','888844rrr','Lebanon')
+
+2-query to update address of all rows
+update customers set address = 'meetghrab' where 1
+
+3- query to update city for (id = 9)
+update customers set city = 'cairo' where customerId = 9
+
+4-query to delete records that have ids (1,2,3,4)
+delete from customers where customerId in(1,2,3,4)
+
+5-query to fetch rows  that have a name started with chars (mo)
+select * from customers where customerName like 'mo%'
