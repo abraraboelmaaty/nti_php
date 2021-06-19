@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2021 at 04:08 PM
+-- Generation Time: Jun 19, 2021 at 09:15 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -83,7 +83,8 @@ CREATE TABLE `book` (
   `title` char(50) NOT NULL,
   `status` char(20) NOT NULL,
   `puplisherId` int(11) NOT NULL,
-  `autherId` int(11) NOT NULL
+  `autherId` int(11) NOT NULL,
+  `categoryId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -112,7 +113,8 @@ CREATE TABLE `borrowbook` (
   `number` smallint(6) NOT NULL,
   `name` char(50) NOT NULL,
   `puprose` char(50) NOT NULL,
-  `borrowerId` int(11) NOT NULL
+  `borrowerId` int(11) NOT NULL,
+  `categoryId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -146,6 +148,18 @@ CREATE TABLE `borrowerbooks` (
   `id` int(11) NOT NULL,
   `borrowerId` int(11) NOT NULL,
   `bookId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `category` char(50) NOT NULL,
+  `categoryPartition` char(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -189,7 +203,8 @@ ALTER TABLE `auther`
 ALTER TABLE `book`
   ADD PRIMARY KEY (`id`),
   ADD KEY `puplisherId` (`puplisherId`),
-  ADD KEY `autherId` (`autherId`);
+  ADD KEY `autherId` (`autherId`),
+  ADD KEY `categoryId` (`categoryId`);
 
 --
 -- Indexes for table `book_browbook`
@@ -204,7 +219,8 @@ ALTER TABLE `book_browbook`
 --
 ALTER TABLE `borrowbook`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `borrowerName` (`borrowerId`);
+  ADD KEY `borrowerName` (`borrowerId`),
+  ADD KEY `categoryId` (`categoryId`);
 
 --
 -- Indexes for table `borrower`
@@ -220,6 +236,12 @@ ALTER TABLE `borrowerbooks`
   ADD PRIMARY KEY (`id`),
   ADD KEY `borrowerId` (`borrowerId`),
   ADD KEY `bookId` (`bookId`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `puplisher`
@@ -280,6 +302,12 @@ ALTER TABLE `borrowerbooks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `puplisher`
 --
 ALTER TABLE `puplisher`
@@ -294,6 +322,7 @@ ALTER TABLE `puplisher`
 --
 ALTER TABLE `book`
   ADD CONSTRAINT `autherRelation` FOREIGN KEY (`autherId`) REFERENCES `auther` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `catigoryRelation` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `puplisherRelation` FOREIGN KEY (`puplisherId`) REFERENCES `puplisher` (`id`) ON UPDATE CASCADE;
 
 --
@@ -307,7 +336,8 @@ ALTER TABLE `book_browbook`
 -- Constraints for table `borrowbook`
 --
 ALTER TABLE `borrowbook`
-  ADD CONSTRAINT `brrowRelation` FOREIGN KEY (`borrowerId`) REFERENCES `borrower` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `brrowRelation` FOREIGN KEY (`borrowerId`) REFERENCES `borrower` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `categoryBorrowRelation` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `borrower`
