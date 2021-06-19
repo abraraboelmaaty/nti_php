@@ -6,6 +6,7 @@
     require 'dbconnection.php';
     //clean the inputs of form
     $errorMessage = [];
+    $search = '';
     function clean($input){
         $input = trim($input);
         $input = stripslashes($input);
