@@ -39,7 +39,7 @@
 
         // handling login
         $password = sha1($password); 
-        $sql = "select * from admin where email='$email' and password = '$password' " ;
+        $sql = "select * from borrower where email='$email' and password = '$password' " ;
 
         $op = mysqli_query($con,$sql);
 
