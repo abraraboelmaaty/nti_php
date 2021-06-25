@@ -157,7 +157,7 @@ require 'dbConnection.php';
       //  echo $last_id;
        $op  =  mysqli_query($con,$sql);
        $last_id = mysqli_insert_id($con);
-       echo $last_id;
+      //  echo $last_id;
       //  $nat_id = "SELECT LAST_INSERT_ID() FROM nationalids";
       // echo $nat_id;
        $sql = "insert into users (name,email,password,nationalId,age,dep_id) values ('$name','$email','$password',$last_id,$age,$dep_id)";
