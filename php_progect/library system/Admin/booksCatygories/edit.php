@@ -20,7 +20,7 @@ include "../header.php";
         if(filter_var($id,FILTER_VALIDATE_INT)){
             
     
-            $sql = "select * from admin_role where id  =".$id;
+            $sql = "select * from category where id  =".$id;
         
             $op  = mysqli_query($con,$sql);
 
@@ -72,8 +72,8 @@ include "../header.php";
 
     if(empty($title)){
         $errors['title'] = "Empty Field";
-    }elseif(strlen($title) <= 3){
-        $errors['title'] = "Length must be > 3";
+    }elseif(strlen($title) < 2){
+        $errors['title'] = "Length must be => 2";
 
     }else{
 
@@ -100,7 +100,7 @@ include "../header.php";
 
      if(count($errors) == 0){
 
-     $sql = "update admin_role set title = '$title' where id=".$id; 
+     $sql = "update category set name = '$title' where id=".$id; 
 
       $op = mysqli_query($con,$sql);
 
@@ -175,7 +175,7 @@ include "../header.php";
                                         <form  action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress">Title</label>
-                                                <input class="form-control py-4"  value="<?php echo $data['title'] ; ?>"  name="title" id="inputEmailAddress" type="text" placeholder="Enter Role title"  required />
+                                                <input class="form-control py-4"  value="<?php echo $data['name'] ; ?>"  name="title" id="inputEmailAddress" type="text" placeholder="Enter Role title"  required />
                                             </div>
                                            <input  type="hidden" name="id" value="<?php echo $data['id'];?>">
                                            

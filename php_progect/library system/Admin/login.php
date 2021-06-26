@@ -14,12 +14,12 @@
 
       // Validate email 
       if(empty($email)){
-        $errorMessages['email'] = "Email Field Required";
+        $errors['email'] = "Email Field Required";
      }else{
       
       // filter_var($email,FILTER_VALIDATE_EMAIL))) == flase || 0 
       if(!(filter_var($email,FILTER_VALIDATE_EMAIL))){    
-          $errorMessages['email']  = "Invalid Email";
+          $errors['email']  = "Invalid Email";
       }
   
      }
@@ -27,11 +27,11 @@
   
      // Validate Password . 
      if(empty($password)){
-         $errorMessages['password'] = "Password Field Required";
+         $errors['password'] = "Password Field Required";
      }else{
   
          if(strlen($password) < 6){
-          $errorMessages['password'] = "Password Must Be >= 6 "; 
+          $errors['password'] = "Password Must Be >= 6 "; 
          }
   
      }
@@ -122,6 +122,9 @@
                                             </div>
                                         </form>
 
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <div class="small"><a href="<?php echo url('Admins/add.php');?>">Need an account? Sign up!</a></div>
                                     </div>
                     
                                 </div>

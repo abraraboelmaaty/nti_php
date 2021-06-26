@@ -1,6 +1,8 @@
 
 <?php 
 
+include './operation/functions.php';
+include "./operation/cheackLogin.php";
 include "header.php";
 
 ?>

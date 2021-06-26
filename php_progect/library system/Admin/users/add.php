@@ -1,7 +1,8 @@
 <?php    
 
-include '../operation/connection.php';
 include '../operation/functions.php';
+include "../operation/cheackLogin.php";
+include '../operation/connection.php';
 include "../header.php";
 
 

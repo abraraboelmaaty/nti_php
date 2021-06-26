@@ -6,7 +6,7 @@ include "../operation/cheackLogin.php";
 include '../operation/connection.php';
 include "../header.php";
 
-$sql  = "select admin.* , admin_role.title as roleTitle from admin join admin_role on admin.role_id = admin_role.id";
+$sql  = "SELECT * FROM category where 1";
 $op = mysqli_query($con,$sql);
 
 
@@ -39,27 +39,24 @@ $op = mysqli_query($con,$sql);
                         </ol>
                         <?php 
                            unset($_SESSION['message']);
-                           
+                           unset($_SESSION['error_message']);
                             }
-                            unset($_SESSION['error_messsage']);
+                            
                         ?>        
                         
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                 admins
+                                 book category
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
+                                         
                                             <tr>
                                                 <th>#id</th>
-                                                <th>email</th>
-                                                <!-- <th>password</th> -->
-                                                <th>userName</th>
-                                                <th>phone</th>
-                                                <th>role</th>
+                                                <th>categoryName</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -72,11 +69,7 @@ $op = mysqli_query($con,$sql);
                                         ?>
                                             <tr>
                                                 <td><?php echo $data ['id'];?></td>
-                                                <td><?php echo $data['email'];?></td>
-                                                <!-- <td><?php //echo $data ['password'];?></td> -->
-                                                <td><?php echo $data['userName'];?></td>  
-                                                <td><?php echo $data ['phone'];?></td>
-                                                <td><?php echo $data['roleTitle'];?></td>      
+                                                <td><?php echo $data['name'];?></td>    
                                                 <td>
                                                     <a href='delete.php?id=<?php echo $data['id'];?>' class='btn btn-danger m-r-1em'>Delete</a>
                                                     <a href='edit.php?id=<?php echo $data['id'];?>' class='btn btn-warning m-r-1em'>Edit</a>

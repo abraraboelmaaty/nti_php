@@ -1,4 +1,5 @@
 <?php 
+
 include '../operation/functions.php';
 include "../operation/cheackLogin.php";
 include '../operation/connection.php';
@@ -8,7 +9,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
     if(isset($_GET['id'])){
         $id = filter_var($_GET['id'],FILTER_SANITIZE_NUMBER_INT);
         if(filter_var($id,FILTER_VALIDATE_INT)){
-            $sql = "delete from admin where id=".$id;
+            $sql = "delete from book where id=".$id;
             $op = mysqli_query($con,$sql);
             if($op){
                 $message = 'item deleted';

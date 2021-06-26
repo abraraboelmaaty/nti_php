@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2021 at 01:12 AM
+-- Generation Time: Jun 26, 2021 at 11:56 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -69,7 +69,9 @@ INSERT INTO `admin` (`id`, `email`, `password`, `userName`, `phone`, `role_id`) 
 (1, 'abrar@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'abrarAboelaaaty', '01019011597', 1),
 (3, 'abrar@gmail.com', '20eabe5d64b0e216796e834f52d61fd0b70332fc', 'abrar mohamed', '01019011597', 2),
 (4, 'abrar@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'abrar mohamed', '01019011597', 1),
-(5, 'abraraboelmaaty24@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d', 'abrar mohamed', '01019011597', 1);
+(5, 'abraraboelmaaty24@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d', 'abrar mohamed', '01019011597', 1),
+(6, 'abrar@gmail.com', '20eabe5d64b0e216796e834f52d61fd0b70332fc', 'abrar mohamed', '01019011597', 1),
+(7, 'mohamed@gmail.com', '20eabe5d64b0e216796e834f52d61fd0b70332fc', 'mohamed', '01019011597', 2);
 
 -- --------------------------------------------------------
 
@@ -88,8 +90,7 @@ CREATE TABLE `admin_role` (
 
 INSERT INTO `admin_role` (`id`, `title`) VALUES
 (1, 'super admin'),
-(2, 'admin'),
-(11, 'admin');
+(2, 'admin');
 
 -- --------------------------------------------------------
 
@@ -100,9 +101,20 @@ INSERT INTO `admin_role` (`id`, `title`) VALUES
 CREATE TABLE `auther` (
   `id` int(11) NOT NULL,
   `name` char(50) NOT NULL,
-  `information` varchar(400) NOT NULL,
-  `photo` char(100) NOT NULL
+  `information` varchar(400) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `auther`
+--
+
+INSERT INTO `auther` (`id`, `name`, `information`) VALUES
+(2, 'Andrew Mead', ''),
+(3, 'Andrew Mead', ''),
+(4, 'Andrew Mead', ''),
+(5, 'uhygb njhg', ''),
+(6, 'oooooooooooo', ''),
+(7, 'Andrew Mead', '');
 
 -- --------------------------------------------------------
 
@@ -112,18 +124,24 @@ CREATE TABLE `auther` (
 
 CREATE TABLE `book` (
   `id` int(11) NOT NULL,
-  `name` char(100) NOT NULL,
-  `code` char(100) NOT NULL,
-  `discreption` varchar(500) NOT NULL,
+  `name` char(50) NOT NULL,
+  `code` char(50) NOT NULL,
+  `descreption` varchar(500) NOT NULL,
   `cobiedNumber` smallint(6) NOT NULL,
-  `title` char(50) NOT NULL,
-  `status` char(20) NOT NULL,
-  `adminId` int(11) NOT NULL,
+  `status` enum('avilable','notAvilable','','') NOT NULL DEFAULT 'avilable',
+  `admin_id` int(11) NOT NULL,
   `puplisherId` int(11) NOT NULL,
   `autherId` int(11) NOT NULL,
   `categoryId` int(11) NOT NULL,
   `photo` char(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`id`, `name`, `code`, `descreption`, `cobiedNumber`, `status`, `admin_id`, `puplisherId`, `autherId`, `categoryId`, `photo`) VALUES
+(5, 'java script', '123456', 'Bootcamp modern java script Bootcamp modern java script Bootcamp modern java script Bootcamp modern java script Bootcamp modern java script Bootcamp modern java script Bootcamp modern java script Bootcamp', 7, 'avilable', 1, 5, 4, 10, '12374676701624734213.jpg');
 
 -- --------------------------------------------------------
 
@@ -180,6 +198,20 @@ CREATE TABLE `category` (
   `name` char(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'scientific'),
+(2, 'cultural'),
+(3, 'social'),
+(4, 'literary'),
+(5, 'religious'),
+(6, 'Politician'),
+(10, 'programming'),
+(11, 'mathimatical');
+
 -- --------------------------------------------------------
 
 --
@@ -189,9 +221,20 @@ CREATE TABLE `category` (
 CREATE TABLE `puplisher` (
   `id` int(11) NOT NULL,
   `name` char(20) NOT NULL,
-  `discreption` varchar(300) NOT NULL,
-  `dateOfPublication` date NOT NULL
+  `info` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `puplisher`
+--
+
+INSERT INTO `puplisher` (`id`, `name`, `info`) VALUES
+(3, 'tygfderg ujjmml', ''),
+(4, 'tygfderg ujjmml', ''),
+(5, 'tygfderg ujjmml', ''),
+(6, 'eeeeeeeeeeee', ''),
+(7, 'tygfderg ujjmml', ''),
+(8, 'tygfderg ujjmml', '');
 
 --
 -- Indexes for dumped tables
@@ -230,7 +273,7 @@ ALTER TABLE `book`
   ADD KEY `puplisherId` (`puplisherId`),
   ADD KEY `autherId` (`autherId`),
   ADD KEY `categoryId` (`categoryId`),
-  ADD KEY `adminId` (`adminId`);
+  ADD KEY `adminId` (`admin_id`);
 
 --
 -- Indexes for table `borrowbooks`
@@ -273,7 +316,7 @@ ALTER TABLE `adderss`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `admin_role`
@@ -285,13 +328,13 @@ ALTER TABLE `admin_role`
 -- AUTO_INCREMENT for table `auther`
 --
 ALTER TABLE `auther`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `borrowbooks`
@@ -309,13 +352,13 @@ ALTER TABLE `borrower`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `puplisher`
 --
 ALTER TABLE `puplisher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -331,10 +374,10 @@ ALTER TABLE `admin`
 -- Constraints for table `book`
 --
 ALTER TABLE `book`
-  ADD CONSTRAINT `adminRelation` FOREIGN KEY (`adminId`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `autherRelation` FOREIGN KEY (`autherId`) REFERENCES `auther` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `catigoryRelation` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `puplisherRelation` FOREIGN KEY (`puplisherId`) REFERENCES `puplisher` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `adminRelation` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `autherRelation` FOREIGN KEY (`autherId`) REFERENCES `auther` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `catigoryRelation` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `puplisherRelation` FOREIGN KEY (`puplisherId`) REFERENCES `puplisher` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `borrowbooks`
