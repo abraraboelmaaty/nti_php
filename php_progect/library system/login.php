@@ -1,7 +1,8 @@
 <?php 
-   include "operation/connection.php";
-   include "operation/functions.php";
+   require './operation/functions.php';
+   require './operation/connection.php';
    include 'header.php';
+
 
     
   if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -50,6 +51,7 @@
           $data = mysqli_fetch_assoc($op);
           
           $_SESSION['id']   =  $data['id'];
+          $_SESSION['name'] =  $data['name'];
          
 
          header("Location: index.php");
@@ -78,28 +80,29 @@
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
+                    
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form  action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                                <input class="form-control py-4" id="inputEmailAddress" type="email" placeholder="Enter email address" />
+                                                <input class="form-control py-4" id="inputEmailAddress" type="email" name="email" placeholder="Enter email address" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputPassword">Password</label>
-                                                <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />
+                                                <input class="form-control py-4" id="inputPassword" type="password" name="password" placeholder="Enter password" />
                                             </div>
 
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="btn btn-primary" href="index.php">Login</a>
+                                                <input type="submit" value="Login" class="btn btn-primary">
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="http://localhost/php_nti/nti_php/php_progect/library%20system/signUp.php">Need an account? Sign up!</a></div>
+                                        <div class="small"><a href="<?php echo url('signUp.php');?>">Need an account? Sign up!</a></div>
                                     </div>
                                 </div>
                             </div>

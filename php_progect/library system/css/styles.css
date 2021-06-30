@@ -1,0 +1,36 @@
+html{
+    scroll-behavior: smooth;
+}
+*{
+    font-family: system-ui;
+    margin: 0;
+    padding: 0;
+}
+
+ul,li{
+    list-style-type: none;
+    
+}
+a{
+    text-decoration: none;
+}
+
+/* end rest  */
+
+/* start slider */
+.slider{
+    background-image: url(../image/slider.jpg);
+
+    height:600px;
+    
+}
+
+/* session desplayBooks */
+.desplayBooks .card-body p{
+    color: #17a2b8 !important;
+    font-size: larger !important;
+}
+
+.custemTitle{
+    margin: 30px 0px;
+}

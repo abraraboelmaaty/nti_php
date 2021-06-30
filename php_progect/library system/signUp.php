@@ -1,7 +1,8 @@
 <?php    
 
-include "operation/connection.php";
 include "operation/functions.php";
+// include "operation/cheackLogin.php";
+include "operation/connection.php";
 include 'header.php';
 
 
@@ -350,7 +351,7 @@ if(count($errors) == 0){
                                         </form>
                                     </div>
                                     <div class="card-footer text-center bg-dark">
-                                        <div class="small"><a href="http://localhost/php_nti/nti_php/php_progect/library%20system/login.php">Have an account? Go to login</a></div>
+                                        <div class="small"><a href="<?php echo url('login.php');?>">Have an account? Go to login</a></div>
                                     </div>
                                 </div>
                             </div>

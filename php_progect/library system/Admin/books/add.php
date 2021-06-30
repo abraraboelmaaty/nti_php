@@ -1,6 +1,7 @@
 
 <?php 
 
+
 include '../operation/functions.php';
 include "../operation/cheackLogin.php";
 include '../operation/connection.php';
@@ -175,13 +176,27 @@ if(count($errors) == 0){
    }  
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed"> 
 
 <?php 
- include '../nav.php';
+include '../nav.php';
 ?>
 
 
