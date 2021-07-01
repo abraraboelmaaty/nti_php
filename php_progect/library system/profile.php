@@ -26,16 +26,17 @@ $errors = [];
 $sql = "select borrowbooks.id,borrowbooks.borrowDate,borrowbooks.returnDate,book.name as book_name ,book.cobiedNumber as copies ,auther.name as book_auther ,puplisher.name as book_publisher FROM borrowbooks join book on borrowbooks.bookId = book.id join auther on book.autherId = auther.id join puplisher on book.puplisherId = puplisher.id join borrower on borrowbooks.borrowerId = borrower.id where borrower.id =".$user_id;
 $op = mysqli_query($con,$sql);
 
-// $data = mysqli_fetch_assoc($op);
+$data = mysqli_fetch_assoc($op);
 
-// $hour = 12;
+$hour = 12;
 
-// $today = strtotime($hour . ':00:00'); 
-// if($today==strtotime($data['returnDate'])){
-//     $data['copies']++;
-//     $sql_delete = "DELETE FROM `borrowbooks` WHERE returnDate=".$today;
-//     $op_delete = mysqli_query($con,$sql_delete);
-// }
+$today = strtotime($hour . ':00:00'); 
+if($today==strtotime($data['returnDate'])){
+    $data['copies']++;
+    $sql ="UPDATE `book` SET`cobiedNumber`= $copies WHERE book.id = ".$book_id;
+    $op = mysqli_query($con,$sql);
+    
+}
 
   
 

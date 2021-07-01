@@ -81,7 +81,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
     if(empty($returnDate)){
         $errors['returnDate'] = "Empty Field";
-    }elseif(strtotime($returnDate) < $brrowDate){
+    }elseif(strtotime($returnDate) < strtotime($brrowDate)){
         $errors['returnDate'] = "return date must be next brrow date";
 
     }
@@ -100,21 +100,21 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
       if($op){
           $message = "brrow";
-          header("Location: profile.php");
-        //   $sql = "SELECT `cobiedNumber`,`status` FROM `book` WHERE book.id =".$book_id;
-        //   $op = mysqli_query($con,$sql);
-        //   $data = mysqli_fetch_assoc($op);
-        //   $copies = $data['cobiedNumber'];
-        //   $copies--;
-        //   if($copies<=0){
-        //     $sql ="UPDATE `book` SET`status`= 'notAvilable' WHERE book.id = ".$book_id;
-        //     $op = mysqli_query($con,$sql);
-        //     $sql ="UPDATE `book` SET`cobiedNumber`= $copies WHERE book.id = ".$book_id;
-        //     $op = mysqli_query($con,$sql);
-        //    }elseif($copies>0){
-        //     $sql ="UPDATE `book` SET`status`= 'avilable' WHERE book.id = ".$book_id;
-        //     $op = mysqli_query($con,$sql);
-        //   }
+         
+          $sql = "SELECT `cobiedNumber`,`status` FROM `book` WHERE book.id =".$book_id;
+          $op = mysqli_query($con,$sql);
+          $data = mysqli_fetch_assoc($op);
+          $copies = $data['cobiedNumber'];
+          $copies--;
+          if($copies==0){
+            $sql ="UPDATE `book` SET`status`= 'notAvilable' WHERE book.id = ".$book_id;
+            $op = mysqli_query($con,$sql);
+           
+           }elseif($copies>0){
+            $sql ="UPDATE `book` SET`status`= 'avilable' WHERE book.id = ".$book_id;
+            $op = mysqli_query($con,$sql);
+               header("Location: profile.php");
+          }
          
       }else{
           $message = "Try Again";
