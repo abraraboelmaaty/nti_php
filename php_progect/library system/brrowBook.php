@@ -21,12 +21,12 @@ if(!isset( $_SESSION['id'])){
   if($data['status']=== 'notAvilable'){
       ?>
 
-      <div class = "container mt-5" >
-            <h3 style="color:red">this book not avilable to brrow</h3>
-      </div>
+       <div class = "container mt-5" >
+           <h3 style="color:red">this book not avilable to brrow</h3>
+                </div>
     
 
-      <?php
+     <?php
       exit();
 
 
@@ -92,26 +92,30 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
      if(count($errors) == 0){
 
-     $sql = "INSERT INTO `borrowbooks`(`borrowDate`, `returnDate`, `borrowerId`, `bookId`) VALUES('$brrowDate','$returnDate',$user_id,$book_id)"; 
+     $sql = "INSERT INTO `borrowbooks`( `borrowDate`, `returnDate`, `borrowerId`, `bookId`) VALUES('$brrowDate','$returnDate',$user_id,$book_id)"; 
 
       $op = mysqli_query($con,$sql);
+    //   print_r($op);
+    //   exit();
 
       if($op){
           $message = "brrow";
-          $sql = "SELECT `cobiedNumber`,`status` FROM `book` WHERE book.id =".$book_id;
-          $op = mysqli_query($con,$sql);
-          $data = mysqli_fetch_assoc($op);
-          $copies = $data['cobiedNumber'];
-          $copies--;
-          if($copies<=0){
-            $sql ="UPDATE `book` SET`status`= 'notAvilable' WHERE book.id = ".$book_id;
-            $op = mysqli_query($con,$sql);
-          }elseif($copies>0){
-            $sql ="UPDATE `book` SET`status`= 'avilable' WHERE book.id = ".$book_id;
-            $op = mysqli_query($con,$sql);
-          }
-          $sql ="UPDATE `book` SET`cobiedNumber`= $copies WHERE book.id = ".$book_id;
-          $op = mysqli_query($con,$sql);
+          header("Location: profile.php");
+        //   $sql = "SELECT `cobiedNumber`,`status` FROM `book` WHERE book.id =".$book_id;
+        //   $op = mysqli_query($con,$sql);
+        //   $data = mysqli_fetch_assoc($op);
+        //   $copies = $data['cobiedNumber'];
+        //   $copies--;
+        //   if($copies<=0){
+        //     $sql ="UPDATE `book` SET`status`= 'notAvilable' WHERE book.id = ".$book_id;
+        //     $op = mysqli_query($con,$sql);
+        //     $sql ="UPDATE `book` SET`cobiedNumber`= $copies WHERE book.id = ".$book_id;
+        //     $op = mysqli_query($con,$sql);
+        //    }elseif($copies>0){
+        //     $sql ="UPDATE `book` SET`status`= 'avilable' WHERE book.id = ".$book_id;
+        //     $op = mysqli_query($con,$sql);
+        //   }
+         
       }else{
           $message = "Try Again";
       }
@@ -136,7 +140,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
 
 ?>
-
+<body>
 <div class="container">
                     
     <div class="row justify-content-center">

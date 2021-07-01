@@ -35,7 +35,7 @@ if($count == 0){
 
 
 ?>
-
+<body>
 <div class= row>
        
          <?php 

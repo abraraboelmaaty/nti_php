@@ -22,7 +22,7 @@ $op = mysqli_query($con,$sql);
 
 
 ?>
-
+<body>
 <div class= row>
        
        <?php 

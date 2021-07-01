@@ -8,7 +8,7 @@
 // exit();
     
 ?>
-
+      <body>
         <section class="header-navbar sticky-top ">
             <nav class="navbar navbar-expand-lg navbar-light bg-light  pt-4 pb-4">
                 <div class="container">
@@ -26,13 +26,22 @@
                            
                             <li class=" nav-item">
                                 <a class=" nav-link text-info h4" href="index.php">Home</a>
-                            </li>           
+                            </li> 
+                                     
                             <li class="nav-item">
-                                <a class=" nav-link text-info h4" href="<?php echo url('signUp.php');?>">signup</a>
+
+                                <?php if(isset( $_SESSION['id'])){?>
+                                <a class=' nav-link text-info h4' href='<?php echo url('profile.php');?>'>profile</a>
+                                <?php
+                                    }else{
+                                    ?>
+                                 <a class=' nav-link text-info h4' href='<?php echo url('signUp.php');?>'>signup</a>  
+                                <?php
+                                    }
+                                ?>
+                                
                             </li>
-                            <li class="nav-item">
-                                <a class=" nav-link text-info h4" href="contact.html">contact</a>
-                            </li>
+                          
                             <li class="nav-item">
                                 <?php if(isset( $_SESSION['id'])){?>
                                 <a class=' nav-link text-info h4' href='<?php echo url('logout.php');?>'>logout</a>
@@ -46,6 +55,9 @@
                                 
                                 
                             </li>
+                            <li class="nav-item">
+                                <a class=" nav-link text-info h4" href="contact.html">contact</a>
+                            </li> 
                         </ul>
                     </div>
                 </div>
