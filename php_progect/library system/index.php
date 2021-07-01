@@ -54,7 +54,7 @@ $search = '';
             <form action='<?php echo $_SERVER['PHP_SELF'];?>' method="POST" enctype ="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-9">
-                        <input style="margin-top: 300px;margin-left: 30px;" type="text" name="search" class="form-control" id="inputPassword">
+                        <input style="margin-top: 300px;margin-left: 30px;" type="text" name="search" class="form-control" id="inputPassword" placeholder="Enter the book name or book auther">
                     </div>
                     <div class="col-sm-3">
                         <button type="submit" style="margin-top: 300px;" class="btn btn-primary">Submit</button>

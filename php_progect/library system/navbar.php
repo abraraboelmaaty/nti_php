@@ -56,7 +56,7 @@
                                 
                             </li>
                             <li class="nav-item">
-                                <a class=" nav-link text-info h4" href="contact.html">contact</a>
+                                <a class=" nav-link text-info h4" href='<?php echo url('contact.php');?>'>contact</a>
                             </li> 
                         </ul>
                     </div>
